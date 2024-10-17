@@ -11,15 +11,15 @@ public class Shop {
         product.setSellIn(product.getSellIn()-1);
         int depreciation = -1;
 
-        if(product.getType().equals("produit laitier")){
-            if(product.getName().equals("brie vieilli"))
-                depreciation*=-1;
-            else
+        if (!product.getName().equals("brie vieilli")){
+             if(product.getType().equals("produit laitier")){
                  depreciation*=2;
+             }
+            if(product.getSellIn() <= 0){
+                depreciation*=2;
+            }
         }
-        if(product.getSellIn() <= 0 && !product.getName().equals("brie vieilli")){
-                 depreciation*=2;
-        }
+        else depreciation*=-1;
 
         product.setQuality(product.getQuality()+depreciation);
     }
