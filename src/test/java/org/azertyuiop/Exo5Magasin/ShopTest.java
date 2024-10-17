@@ -19,17 +19,14 @@ public class ShopTest {
   public void ProductDepreciatesTwiceAsFastPastExpirationDate(){
     int qualityBeforeUpdate = 10;
     // Normal product
-    product = new Product("type", "name", 5, qualityBeforeUpdate);
+    product = new Product("type", "produit normal", 5, qualityBeforeUpdate);
     shop.update(product);
     int qualityAfterUpdate = product.getQuality();
-    System.out.println(qualityAfterUpdate);
 
     // Expired product
-    Product expiredProduct = new Product("produit normal", "nom", 0, qualityBeforeUpdate);
+    Product expiredProduct = new Product("type", "produit périmé", 0, qualityBeforeUpdate);
     shop.update(expiredProduct);
     int qualityAfterUpdateExpiredProduct = expiredProduct.getQuality();
-    System.out.println(qualityAfterUpdateExpiredProduct);
-
 
     if (qualityAfterUpdate > 0 && qualityAfterUpdateExpiredProduct > 0){
       int normalDailyDepreciation = qualityAfterUpdate - qualityBeforeUpdate;
@@ -52,11 +49,10 @@ public class ShopTest {
   @Test
   @DisplayName("La qualité d'un article n'est jamais supérieure à 50")
   public void ProductQualityShouldNeverBeGreaterThan50(){
-    product = new Product("type", "name", 0, 50); // ??
+    product = new Product("type", "name", 0, 50);
     shop.update(product);
     Assert.assertTrue(product.getQuality() <=50);
   }
-
 
 //-	La qualité du « brie vieilli » augmente à mesure qu'il vieillit.
   @Test
@@ -64,11 +60,10 @@ public class ShopTest {
   public void ProductBrieVieilliQualityAppreciates(){
     int qualityBeforeUpdate = 10;
     product = new Product("produit laitier", "brie vieilli", 1, qualityBeforeUpdate);
-      shop.update(product);
-      int qualityAfterUpdate = product.getQuality();
-      Assert.assertTrue(qualityAfterUpdate > qualityBeforeUpdate);
+    shop.update(product);
+    int qualityAfterUpdate = product.getQuality();
+    Assert.assertTrue(qualityAfterUpdate > qualityBeforeUpdate);
     }
-
 
   //-	Les produits laitiers se dégradent en qualité deux fois plus vite que les produits normaux
   @Test

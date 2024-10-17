@@ -9,14 +9,18 @@ public class Shop {
 
     public void update(Product product) {
         product.setSellIn(product.getSellIn()-1);
+        int depreciation = -1;
 
-        if(product.getType().equals("produit laitier") || product.getSellIn() <= 0){
+        if(product.getType().equals("produit laitier")){
             if(product.getName().equals("brie vieilli"))
-                product.setQuality(product.getQuality()+1);
+                depreciation*=-1;
             else
-                product.setQuality(product.getQuality()-2);
+                 depreciation*=2;
         }
-        else
-            product.setQuality(product.getQuality()-1);
+        if(product.getSellIn() <= 0 && !product.getName().equals("brie vieilli")){
+                 depreciation*=2;
+        }
+
+        product.setQuality(product.getQuality()+depreciation);
     }
 }
