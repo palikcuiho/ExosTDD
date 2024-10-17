@@ -18,7 +18,7 @@ public class ShopTest {
 //-	La qualité d'un article n'est jamais négative.
   @Test
   @DisplayName("La qualité d'un article n'est jamais négative")
-  public void ProductQualityShouldNeverBeNegative() throws ExecutionControl.NotImplementedException {
+  public void ProductQualityShouldNeverBeNegative(){
     product = new Product("type", "name", 0, 0);
     shop.update(product);
     Assert.assertTrue(product.getQuality() >= 0);
@@ -27,7 +27,7 @@ public class ShopTest {
 //-	La qualité d'un article n'est jamais supérieure à 50.
   @Test
   @DisplayName("La qualité d'un article n'est jamais supérieure à 50")
-  public void ProductQualityShouldNeverBeGreaterThan50() throws ExecutionControl.NotImplementedException {
+  public void ProductQualityShouldNeverBeGreaterThan50(){
     product = new Product("type", "name", 0, 50); // ??
     shop.update(product);
     Assert.assertTrue(product.getQuality() <=50);
@@ -37,7 +37,7 @@ public class ShopTest {
 //-	La qualité du « brie vieilli » augmente à mesure qu'il vieillit.
   @Test
   @DisplayName("La qualité du « brie vieilli » augmente à mesure qu'il vieillit")
-  public void ProductBrieVieilliQualityAppreciates() throws ExecutionControl.NotImplementedException {
+  public void ProductBrieVieilliQualityAppreciates(){
     int qualityBeforeUpdate = 10;
     product = new Product("produit laitier", "brie vieilli", 1, qualityBeforeUpdate);
       shop.update(product);
@@ -49,7 +49,7 @@ public class ShopTest {
   //-	Les produits laitiers se dégradent en qualité deux fois plus vite que les produits normaux
   @Test
   @DisplayName("Les produits laitiers se dégradent 2x plus vite que les produits normaux")
-  public void DairyProductsDepreciateTwiceAsFast() throws ExecutionControl.NotImplementedException {
+  public void DairyProductsDepreciateTwiceAsFast(){
     int qualityBeforeUpdate = 10;
 
     // Normal product

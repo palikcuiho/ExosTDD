@@ -29,14 +29,6 @@ public class Product {
         return quality;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setSellIn(int sellIn) {
         this.sellIn = sellIn;
     }
