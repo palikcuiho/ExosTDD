@@ -7,14 +7,16 @@ import java.util.List;
 public class Shop {
     private List<Product> products;
 
-    public void update(Product product) throws ExecutionControl.NotImplementedException {
+    public void update(Product product) {
         product.setSellIn(product.getSellIn()-1);
 
-
         if(product.getType().equals("produit laitier")){
-            product.setQuality(product.getQuality()-20);
+            if(product.getName().equals("brie vieilli"))
+                product.setQuality(product.getQuality()+1);
+            else
+                product.setQuality(product.getQuality()-2);
         }
         else
-            product.setQuality(product.getQuality()-10);
+            product.setQuality(product.getQuality()-1);
     }
 }
