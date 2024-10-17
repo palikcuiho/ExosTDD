@@ -30,8 +30,6 @@ class RechercheVilleTest {
   public void whenArgument2CharactersLong_NotFoundExceptionThrown(){
     String argument = "a";
     Assert.assertThrows(ArgumentTooShortException.class,()->{rechercheVille.rechercher(argument);});
-
-
   }
 
 //  2. Si le texte de recherche est égal ou supérieur à 2 caractères, il doit renvoyer tous les noms de ville commençant par le texte de recherche exact.
