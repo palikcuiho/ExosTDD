@@ -1,6 +1,5 @@
 package org.azertyuiop.Exo5Magasin;
 
-import jdk.jshell.spi.ExecutionControl;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 
@@ -15,6 +14,31 @@ public class ShopTest {
   }
 
 //-	Une fois la date de péremption est à zéro, la qualité se dégrade deux fois plus vite.
+  @Test
+  @DisplayName("Une fois la date de péremption à zéro, la qualité se dégrade 2x plus vite")
+  public void ProductDepreciatesTwiceAsFastPastExpirationDate(){
+    int qualityBeforeUpdate = 10;
+    // Normal product
+    product = new Product("type", "name", 5, qualityBeforeUpdate);
+    shop.update(product);
+    int qualityAfterUpdate = product.getQuality();
+    System.out.println(qualityAfterUpdate);
+
+    // Expired product
+    Product expiredProduct = new Product("produit normal", "nom", 0, qualityBeforeUpdate);
+    shop.update(expiredProduct);
+    int qualityAfterUpdateExpiredProduct = expiredProduct.getQuality();
+    System.out.println(qualityAfterUpdateExpiredProduct);
+
+
+    if (qualityAfterUpdate > 0 && qualityAfterUpdateExpiredProduct > 0){
+      int normalDailyDepreciation = qualityAfterUpdate - qualityBeforeUpdate;
+      int expiredDailyDepreciation = qualityAfterUpdateExpiredProduct - qualityBeforeUpdate;
+      if (normalDailyDepreciation != 0)
+        Assert.assertEquals(2, expiredDailyDepreciation/normalDailyDepreciation);
+    }
+  }
+
 //-	La qualité d'un article n'est jamais négative.
   @Test
   @DisplayName("La qualité d'un article n'est jamais négative")
